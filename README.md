@@ -11,12 +11,12 @@
 | last_name        | string  | null: false |
 | first_name_kana  | string  | null: false |
 | last_name_kana   | string  | null: false |
-| birth_date       | integer | null: false |
+| birth_date       | date    | null: false |
 
 ### Association
 
 - has_many :items
-- has_many :transactions
+- has_many :item_purchases
 
 ## items テーブル
 
@@ -36,10 +36,10 @@
 
 ### Association
 
-- belongs_to :users
-- has_one :transactions
+- belongs_to :user
+- has_one :item_purchase
 
-## transactions テーブル
+## item_purchases テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -48,20 +48,21 @@
 
 ### Association
 
+- belongs_to :item
 - belongs_to :user
-- has_one :item
+- has_one :address
 
 ## addresses テーブル
 
 | Column          | Type     | Options     |
 | --------------- | -------- | ----------- |
-| postal_code     | integer  | null: false |
+| postal_code     | string   | null: false |
 | prefecture      | integer  | null: false |
 | city            | string   | null: false |
 | addresses       | string   | null: false |
-| building        | string   | null: false |
-| phone_number    | integer  | null: false |
+| building        | string   |             |
+| phone_number    | string   | null: false |
 
 ### Association
 
-- has_one :transactions
+- has_one :item_purchase
