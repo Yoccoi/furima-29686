@@ -59,3 +59,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'active_hash'
 gem 'devise'
+
+group :production do
+  gem 'rails_12factor'
+end
