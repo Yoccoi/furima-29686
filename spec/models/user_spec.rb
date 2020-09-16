@@ -72,12 +72,10 @@ RSpec.describe User, type: :model do
       another_user.valid?
       expect(another_user.errors.full_messages).to include('Email has already been taken')
     end
-    it 'emailに＠がない登録できないこと' do
-    end
-    it 'passwordが6文字以上であれば登録できること' do
-      @user.password = '00000a'
-      @user.password_confirmation = '00000a'
-      expect(@user).to be_valid
+    it 'emailに＠がないと登録できないこと' do
+      @user.email = "test.com"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
     end
 
     it 'passwordが5文字以下であれば登録できないこと' do
@@ -87,9 +85,16 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
 
-    it 'passwordは半角英数字混合でないと登録できないこと' do
+    it 'passwordは半角数字のみでは登録できないこと' do
       @user.password = '000000'
       @user.password_confirmation = '000000'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password Include both letters and numbers.')
+    end
+    
+    it 'passwordは半角英字のみでは登録できないこと' do
+      @user.password = 'aaaaaa'
+      @user.password_confirmation = 'aaaaaa'
       @user.valid?
       expect(@user.errors.full_messages).to include('Password Include both letters and numbers.')
     end
