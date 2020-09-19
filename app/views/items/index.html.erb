@@ -123,12 +123,12 @@
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
-    <%= link_to '新規投稿商品', 'items/new', class: "subtitle" %>
+    <%= link_to '新規投稿商品', new_item_path, class: "subtitle" %>
     <ul class='item-lists'>
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
       <% @items.each do |item|%>
         <li class='list'>
-          <%= link_to "/items/:id" do %>
+          <%= link_to item_path(item.id) do %>
             <div class='item-img-content'>
               <%= image_tag item.image, class: "item-img" %>
               <% if item.id = nil %>
@@ -184,7 +184,7 @@
   <%# /商品一覧 %>
 </div>
 <div class='purchase-btn'>
-  <%= link_to 'items/new' do %>
+  <%= link_to new_item_path do %>
   <span class='purchase-btn-text'>出品する</span>
     <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   <% end %>
