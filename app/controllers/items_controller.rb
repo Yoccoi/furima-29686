@@ -28,9 +28,7 @@ class ItemsController < ApplicationController
     @days = DaysForShipping.find_by(id: @item.days_for_shipping_id)
   end
 
-  def edit
-    @item = Item.find(params[:id])
-  end
+
 
   private
 
