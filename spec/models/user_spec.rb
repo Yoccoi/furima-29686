@@ -73,9 +73,9 @@ RSpec.describe User, type: :model do
       expect(another_user.errors.full_messages).to include('Email has already been taken')
     end
     it 'emailに＠がないと登録できないこと' do
-      @user.email = "test.com"
+      @user.email = 'test.com'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email is invalid")
+      expect(@user.errors.full_messages).to include('Email is invalid')
     end
 
     it 'passwordが5文字以下であれば登録できないこと' do
@@ -91,7 +91,7 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Password Include both letters and numbers.')
     end
-    
+
     it 'passwordは半角英字のみでは登録できないこと' do
       @user.password = 'aaaaaa'
       @user.password_confirmation = 'aaaaaa'
