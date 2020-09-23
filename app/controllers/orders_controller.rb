@@ -1,7 +1,10 @@
 class OrdersController < ApplicationController
+  before_action :set_order
+  before_action :move_to_login
+  before_action :move_to_top, only: [:index,:create]
+  before_action :move_to_top_byURL
 
   def index
-    @item = Item.find(params[:item_id])
     @order = OrderAddress.new
   end
 
@@ -10,8 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
-    @user = User.find(current_user.id)
+    @user = current_user
     @order = OrderAddress.new(order_params)
     if @order.valid?
       pay_item
@@ -36,4 +38,26 @@ class OrdersController < ApplicationController
       currency:'jpy'
     )
   end
+
+  def set_order
+    @item = Item.find(params[:item_id])
+  end
+
+  def move_to_login
+    redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def move_to_top
+    if user_signed_in? && current_user.id == @item.user_id
+      redirect_to root_path
+    end
+  end
+
+  def move_to_top_byURL
+    sold_out.id = @order.item_id
+    if visit new_item_order(sold_out.id)
+      redirect_to root_path
+    end
+  end
+
 end
