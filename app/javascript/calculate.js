@@ -11,4 +11,4 @@ window.addEventListener('load', function(){
     addTax.innerHTML = Math.floor(tax)
     profit.innerHTML = Math.floor(p)
   });
- }) 
+}) 

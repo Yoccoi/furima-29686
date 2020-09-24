@@ -2,10 +2,12 @@ class OrdersController < ApplicationController
   before_action :set_order
   before_action :move_to_login
   before_action :move_to_top, only: [:index,:create]
-  before_action :move_to_top_byURL
 
   def index
     @order = OrderAddress.new
+    if @item.order
+      redirect_to root_path
+    end
   end
 
   def new
@@ -49,13 +51,6 @@ class OrdersController < ApplicationController
 
   def move_to_top
     if user_signed_in? && current_user.id == @item.user_id
-      redirect_to root_path
-    end
-  end
-
-  def move_to_top_byURL
-    sold_out.id = @order.item_id
-    if visit new_item_order(sold_out.id)
       redirect_to root_path
     end
   end
