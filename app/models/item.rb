@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :image
     validates :category
     validates :condition
-    validates :price, format: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters.'}
+    validates :price #, format: { with: /\A[0-9]+\z/, message: "は半角数字で入力してください" }
     validates :shipping_fee
     validates :prefecture
     validates :days_for_shipping
@@ -30,5 +30,5 @@ class Item < ApplicationRecord
     validates :days_for_shipping_id
   end
 
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is out of setting range'}
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'は300円から9,999,999円の間で入力してください'}
 end

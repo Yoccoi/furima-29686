@@ -7,13 +7,13 @@ class OrderAddress
     # カードに関するバリデーション
     validates :token
     # 住所に関するバリデーション
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "はハイフン(-)を含んで入力してください"}
     validates :city
     validates :addresses
-    validates :phone_number, numericality: { greater_than: 12, message: 'is out of setting range'}
+    validates :phone_number, numericality: { greater_than: 12, message: 'は11桁以内で入力してください'}
   end
 
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture_id, numericality: { other_than: 1, message: "を選択してください" }
 
   def preserve
     # 注文の情報を保存
