@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :image
     validates :category
     validates :condition
-    validates :price #, format: { with: /\A[0-9]+\z/, message: "は半角数字で入力してください" }
+    validates :price # , format: { with: /\A[0-9]+\z/, message: "は半角数字で入力してください" }
     validates :shipping_fee
     validates :prefecture
     validates :days_for_shipping
