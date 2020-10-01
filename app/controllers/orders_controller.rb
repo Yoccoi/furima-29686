@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_order
   before_action :move_to_login
   before_action :move_to_top, only: [:index, :create]
+  # before_action :set_user
 
   def index
     @order = OrderAddress.new
@@ -18,6 +19,7 @@ class OrdersController < ApplicationController
     if @order.valid?
       pay_item
       @order.preserve
+      NotificationMailer.send_confirm_to_user(@user).deliver
       redirect_to root_path
     else
       render :index
