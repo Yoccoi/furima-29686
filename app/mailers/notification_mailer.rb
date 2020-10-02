@@ -1,8 +1,10 @@
 class NotificationMailer < ApplicationMailer
-  default from: "ba@gmail.com"
+  default from: "test@gmail.com"
 
-  def send_confirm_to_user(user)
+  def send_confirm_to_user(user, item, order)
     @user = user
+    @item = item
+    @order = order
     mail(
       subject: "ご購入いただきありがとうございます", #メールのタイトル
       to: @user.email #宛先

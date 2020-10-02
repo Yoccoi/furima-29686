@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
     if @order.valid?
       pay_item
       @order.preserve
-      NotificationMailer.send_confirm_to_user(@user).deliver
+      NotificationMailer.send_confirm_to_user(@user, @item, @order).deliver
       redirect_to root_path
     else
       render :index

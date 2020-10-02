@@ -1,11 +1,15 @@
 <%= @user.nickname %> 様
 
-この度は購入いただき誠にありがとうございます。
+この度はfurimaをご利用いただき誠にありがとうございます。
+
 ご注文内容は以下の通りです。
 ---
-ご注文番号: 
+ご注文番号: 100-<%= @order.item_id %><%= @order.user_id%>
 
-
+ご注文商品: <%= @item.name %>
+お支払い金額: <%= @item.price %>円
 ---
-マイページはこちら
-<%# <%= user_url(@user) %> %>
+
+商品は出品者様より<%= DaysForShipping.find_by(id: @item.days_for_shipping_id).name %>されます。
+出品者様より商品発送のご連絡がない場合は、お手数ではございますが下記メールアドレスまでご注文番号とともにご連絡ください。
+customer-support@furima.com
