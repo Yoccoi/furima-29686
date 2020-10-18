@@ -1,5 +1,5 @@
 class NotificationMailer < ApplicationMailer
-  default from: "test@gmail.com"
+  default from: "ba023082@gmail.com"
 
   def send_confirm_to_user(user, item, order)
     @user = user
